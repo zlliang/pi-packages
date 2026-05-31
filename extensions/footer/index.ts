@@ -1,7 +1,8 @@
 import { isAbsolute, relative, resolve, sep } from "node:path";
-import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
+import { truncateToWidth } from "@earendil-works/pi-tui";
 
-import { formatContextUsage, formatCost } from "../shared/utils/format";
+import { SplitLine } from "../shared/components/split-line";
+import { formatContextUsage, formatCost, sanitizeText } from "../shared/utils/format";
 
 import type { ExtensionContext, ExtensionAPI, ReadonlyFooterDataProvider, Theme } from "@earendil-works/pi-coding-agent";
 import type { Component } from "@earendil-works/pi-tui";
@@ -26,25 +27,7 @@ class FooterComponent implements Component {
 	}
 
 	private renderMainLine(width: number): string {
-		const left = this.getLeft();
-		const right = this.getRight();
-
-		const gapWidth = 1;
-
-		const leftWidth = visibleWidth(left);
-		const rightWidth = visibleWidth(right);
-		const ellipsis = this.theme.fg("dim", "...");
-
-		if (rightWidth >= width) return truncateToWidth(right, width, ellipsis);
-
-		const availableLeftWidth = width - gapWidth - rightWidth;
-		if (availableLeftWidth <= 5) return `${" ".repeat(width - rightWidth)}${right}`;
-
-		const renderedLeft = leftWidth > availableLeftWidth ? truncateToWidth(left, availableLeftWidth, ellipsis) : left;
-		const renderedLeftWidth = visibleWidth(renderedLeft);
-		const spacer = " ".repeat(width - renderedLeftWidth - rightWidth);
-
-		return `${renderedLeft}${spacer}${right}`;
+		return new SplitLine(this.getLeft(), this.getRight(), 0, 2, "right").render(width)[0];
 	}
 
 	private getLeft(): string {
@@ -95,19 +78,11 @@ class FooterComponent implements Component {
 
 		const statusLine = Array.from(extensionStatuses.entries())
 			.sort(([a], [b]) => a.localeCompare(b))
-			.map(([, text]) => sanitizeStatusText(text))
+			.map(([, text]) => sanitizeText(text))
 			.join(this.theme.fg("dim", " • "));
 
 		return truncateToWidth(statusLine, width, this.theme.fg("dim", "..."));
 	}
-}
-
-/** Replace newlines, tabs, carriage returns with space, then collapse multiple spaces */
-function sanitizeStatusText(text: string): string {
-	return text
-		.replace(/[\r\n\t]/g, " ")
-		.replace(/ +/g, " ")
-		.trim();
 }
 
 function formatCwd(cwd: string, home?: string): string {

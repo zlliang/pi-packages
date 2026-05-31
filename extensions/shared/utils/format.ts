@@ -25,3 +25,11 @@ export function formatContextUsage(contextUsage: ContextUsage | undefined): stri
 export function formatCost(cost: number, isSubscription: boolean): string {
 	return `$${cost.toFixed(2)}${isSubscription ? " (sub)" : ""}`;
 }
+
+/** Replace newlines, tabs, carriage returns with space, then collapse multiple spaces */
+export function sanitizeText(text: string): string {
+	return text
+		.replace(/[\r\n\t]/g, " ")
+		.replace(/ +/g, " ")
+		.trim();
+}

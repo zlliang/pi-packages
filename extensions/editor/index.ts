@@ -1,6 +1,7 @@
 import { CustomEditor } from "@earendil-works/pi-coding-agent";
-import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
+import { InlineText } from "../shared/components/inline-text";
+import { SplitLine } from "../shared/components/split-line";
 import { formatModel } from "../shared/utils/format";
 
 import type { ExtensionContext, ExtensionAPI, KeybindingsManager } from "@earendil-works/pi-coding-agent";
@@ -104,34 +105,12 @@ class Editor extends CustomEditor {
 	}
 
 	private renderTopBorder(width: number): string {
-		if (width <= 2) return this.borderColor("─".repeat(width));
-
 		const theme = this.ctx.ui.theme;
 
-		const left = this.spinner.isWorking() ? ` ${theme.fg("accent", this.spinner.getFrame())} ` : "";
-		const right = theme.fg("dim", ` ${formatModel(this.ctx.model?.provider, this.ctx.model?.id, this.pi.getThinkingLevel())} `);
+		const left = this.spinner.isWorking() ? theme.fg("accent", this.spinner.getFrame()) : "";
+		const right = theme.fg("dim", formatModel(this.ctx.model?.provider, this.ctx.model?.id, this.pi.getThinkingLevel()));
 
-		const contentWidth = width - 2;
-		const gapWidth = 1;
-
-		const leftWidth = visibleWidth(left);
-		const rightWidth = visibleWidth(right);
-		const ellipsis = theme.fg("dim", "... ");
-
-		if (leftWidth >= contentWidth) return this.wrapTopBorder(truncateToWidth(left, contentWidth, ellipsis));
-
-		const availableRightWidth = contentWidth - gapWidth - leftWidth;
-		if (availableRightWidth <= 5) return this.wrapTopBorder(`${left}${this.borderColor("─".repeat(contentWidth - leftWidth))}`);
-
-		const renderedRight = rightWidth > availableRightWidth ? truncateToWidth(right, availableRightWidth, ellipsis) : right;
-		const renderedRightWidth = visibleWidth(renderedRight);
-		const spacer = this.borderColor("─".repeat(contentWidth - leftWidth - renderedRightWidth));
-
-		return this.wrapTopBorder(`${left}${spacer}${renderedRight}`);
-	}
-
-	private wrapTopBorder(text: string): string {
-		return `${this.borderColor("─")}${text}${this.borderColor("─")}`
+		return new SplitLine(left, right, 1, 2, "left", this.borderColor("─"), theme.fg("dim", "…")).render(width)[0];
 	}
 }
 

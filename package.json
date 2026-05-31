@@ -12,6 +12,7 @@
     "pi-package"
   ],
 	"scripts": {
+		"start": "pi --extension $PWD",
 		"typecheck": "tsc --noEmit"
 	},
 	"peerDependencies": {
