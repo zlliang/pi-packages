@@ -1,6 +1,5 @@
 import { CustomEditor } from "@earendil-works/pi-coding-agent";
 
-import { InlineText } from "../shared/components/inline-text";
 import { SplitLine } from "../shared/components/split-line";
 import { formatModel } from "../shared/utils/format";
 
