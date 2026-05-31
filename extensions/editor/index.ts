@@ -79,7 +79,10 @@ export default function (pi: ExtensionAPI) {
     if (!ctx.hasUI) return;
 
     const config = loadConfig(ctx);
-    spinner = new Spinner(config?.editor?.spinner);
+    if (config.editor === false) return;
+
+    const editorConfig = typeof config.editor === "object" ? config.editor : {};
+    spinner = new Spinner(editorConfig.spinner);
 
     ctx.ui.setWorkingVisible(false);
     ctx.ui.setEditorComponent((tui, theme, keybindings) => {
