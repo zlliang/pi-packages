@@ -11,18 +11,17 @@ export default function (pi: ExtensionAPI) {
   pi.on("session_start", (event, ctx) => {
     if (!ctx.hasUI) return;
 
-    const config = loadConfig(ctx);
-    if (config.recap === false) return;
+    const config = loadConfig(ctx, "recap");
+    if (!config) return;
 
-    const recapConfig = typeof config.recap === "object" ? config.recap : {};
-    recapManager = new RecapManager(pi, recapConfig);
+    recapManager = new RecapManager(pi, config);
 
     pi.registerCommand("recap", {
       description: "Generate a short recap of the current session",
       handler: async () => await recapManager?.run(ctx, { force: true }),
     });
 
-    idleListener = new IdleListener((c) => `idle:${c.isIdle()};editor:${c.ui.getEditorText()}`, recapConfig.idle);
+    idleListener = new IdleListener((c) => `idle:${c.isIdle()};editor:${c.ui.getEditorText()}`, config.idle);
     idleListener.on("enter", (c) => recapManager?.run(c));
     idleListener.on("wake", (c) => recapManager?.clear(c));
 

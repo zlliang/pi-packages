@@ -113,8 +113,8 @@ export default function (pi: ExtensionAPI) {
   pi.on("session_start", (_event, ctx) => {
     if (!ctx.hasUI) return;
 
-    const config = loadConfig(ctx);
-    if (config.footer === false) return;
+    const config = loadConfig(ctx, "footer");
+    if (!config) return;
 
     ctx.ui.setFooter((_tui, theme, footerData) => new FooterComponent(ctx, theme, footerData));
   });
