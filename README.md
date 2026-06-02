@@ -1,6 +1,6 @@
 ![Cover](./assets/cover.png)
 
-# Pi Spark
+# pi-spark
 
 A small, opinionated collection of [pi](https://pi.dev/) extensions.
 

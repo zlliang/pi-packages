@@ -1,15 +1,11 @@
 {
   "name": "pi-spark",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small, opinionated collection of pi extensions",
   "keywords": [
     "pi-coding-agent",
     "pi-package"
   ],
-  "homepage": "https://github.com/zlliang/pi-spark#readme",
-  "bugs": {
-    "url": "https://github.com/zlliang/pi-spark/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zlliang/pi-spark.git"
@@ -27,9 +23,7 @@
     "image": "https://raw.githubusercontent.com/zlliang/pi-spark/main/assets/cover.png"
   },
   "scripts": {
-    "start": "pi --no-extensions --extension ~/.pi/agent --extension $PWD",
-    "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typecheck"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "zod": "^4.4.3"
