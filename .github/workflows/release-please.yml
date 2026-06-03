@@ -6,6 +6,7 @@ on:
       - main
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -13,6 +14,13 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v5
+      - id: release
+        uses: googleapis/release-please-action@v5
         with:
           release-type: node
+
+      - name: Trigger npm publish
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        run: gh workflow run publish.yml --ref main -f tag_name='${{ steps.release.outputs.tag_name }}'
+        env:
+          GH_TOKEN: ${{ github.token }}
