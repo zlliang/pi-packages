@@ -1,6 +1,6 @@
 {
   "name": "pi-spark",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A small, opinionated collection of pi extensions",
   "keywords": [
     "pi-coding-agent",
@@ -19,7 +19,9 @@
     "LICENSE"
   ],
   "pi": {
-    "extensions": ["./extensions"],
+    "extensions": [
+      "./extensions"
+    ],
     "image": "https://raw.githubusercontent.com/zlliang/pi-spark/main/assets/cover.png"
   },
   "scripts": {
