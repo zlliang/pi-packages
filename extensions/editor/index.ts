@@ -86,7 +86,7 @@ export default function (pi: ExtensionAPI) {
 
   let editor: Editor | undefined = undefined;
   let spinner: Spinner | undefined = undefined;
-  let runningToolCount = 0;
+  let runningToolCallIds = new Set<string>();
 
   pi.on("session_start", (_event, ctx) => {
     if (!ctx.hasUI) return;
@@ -110,13 +110,13 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.on("agent_start", () => {
-    runningToolCount = 0;
+    runningToolCallIds.clear();
     editor?.setWorkingMessage();
     spinner?.start();
   });
 
   pi.on("message_update", (event) => {
-    if (runningToolCount > 0) return;
+    if (runningToolCallIds.size > 0) return;
 
     switch (event.assistantMessageEvent.type) {
       case "thinking_start":
@@ -140,29 +140,29 @@ export default function (pi: ExtensionAPI) {
     }
   });
 
-  pi.on("tool_execution_start", () => {
-    runningToolCount += 1;
+  pi.on("tool_execution_start", (event) => {
+    runningToolCallIds.add(event.toolCallId);
     editor?.setWorkingMessage("Running tools");
   });
 
-  pi.on("tool_call", () => {
-    if (runningToolCount === 0) runningToolCount = 1;
+  pi.on("tool_call", (event) => {
+    runningToolCallIds.add(event.toolCallId);
     editor?.setWorkingMessage("Running tools");
   });
 
-  pi.on("tool_execution_end", () => {
-    runningToolCount = Math.max(0, runningToolCount - 1);
-    editor?.setWorkingMessage(runningToolCount > 0 ? "Running tools" : undefined);
+  pi.on("tool_execution_end", (event) => {
+    runningToolCallIds.delete(event.toolCallId);
+    editor?.setWorkingMessage(runningToolCallIds.size > 0 ? "Running tools" : undefined);
   });
 
   pi.on("agent_end", () => {
-    runningToolCount = 0;
+    runningToolCallIds.clear();
     editor?.setWorkingMessage();
     spinner?.stop();
   });
 
   pi.on("session_shutdown", () => {
-    runningToolCount = 0;
+    runningToolCallIds.clear();
     editor = undefined;
     spinner?.dispose();
     spinner = undefined;
