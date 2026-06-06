@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/zlliang/pi-spark/compare/v0.2.1...v0.3.0) (2026-06-06)
+
+
+### Features
+
+* **footer:** shorten cwd display ([8ae3525](https://github.com/zlliang/pi-spark/commit/8ae3525af6311de94c4b85f07e3f9c6df5369011))
+* **fullscreen:** clear session on exit ([b48b997](https://github.com/zlliang/pi-spark/commit/b48b9972365da5c24d2f90f36d1ba0e945d87e94))
+
+
+### Bug Fixes
+
+* **fullscreen:** style exit session label ([b7fcd80](https://github.com/zlliang/pi-spark/commit/b7fcd80113e52efd6c46bcd617c3c0520fcb2fb0))
+
 ## [0.2.1](https://github.com/zlliang/pi-spark/compare/v0.2.0...v0.2.1) (2026-06-04)
 
 
