@@ -8,7 +8,7 @@ A small, opinionated collection of [pi](https://pi.dev/) extensions.
 
 - **Editor:** replaces the default editor with a compact working indicator (inspired by [Amp](https://ampcode.com/)) and current model info.
 - **Footer:** shows session information, extension statuses, cost, and context usage on one line.
-- **Fullscreen:** clears the screen and scrollback on session start and pins the editor and footer to the bottom for a full-screen session.
+- **Fullscreen:** clears the screen and scrollback on session start, pins the editor and footer to the bottom for a full-screen session, and clears again on exit.
 - **Presets:** switches named model presets with `/preset`, `--preset`, and quick cycle shortcuts.
 - **Recap:** generates a short idle-session recap and exposes a `/recap` command for manual generation, inspired by [Claude Code's session recap](https://code.claude.com/docs/en/interactive-mode#session-recap).
 
@@ -65,23 +65,8 @@ Notes:
 
 - Set an extension key to `false` to disable it.
 - The `editor.spinner` value can be `dots`, `lights`, or `tildes`.
+- Fullscreen enables Pi's `clearOnShrink` behavior programmatically so the pinned editor and footer stay aligned after taller UI components close.
 - Presets can be selected with `/preset` or `/preset <key>`.
 - Start pi with a preset using `pi --preset <key>`.
 - Cycle presets with `ctrl+super+p` and `ctrl+shift+super+p` (`super` is `command` on macOS).
 - The `recap.idle` value is in milliseconds and must be at least `5000`.
-
-## Recommended pi settings
-
-The Fullscreen extension pins the editor and footer to the bottom of the terminal. For the cleanest experience, pair it with pi's `terminal.clearOnShrink` setting, which clears empty rows when content shrinks so the pinned UI does not leave stale lines behind.
-
-Add this to `~/.pi/agent/settings.json` (global) or `.pi/settings.json` (project):
-
-```json
-{
-  "terminal": {
-    "clearOnShrink": true
-  }
-}
-```
-
-This setting defaults to `false` because it can cause flicker in some terminals. With Fullscreen enabled the trade-off is usually worth it.
