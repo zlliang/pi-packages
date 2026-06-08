@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/zlliang/pi-spark/compare/v0.4.0...v0.5.0) (2026-06-08)
+
+
+### Features
+
+* **codex-usage:** add Codex rate-limit usage status ([6778581](https://github.com/zlliang/pi-spark/commit/67785818e3cb2304b16b1feaf1dfb58520cb1542))
+
 ## [0.4.0](https://github.com/zlliang/pi-spark/compare/v0.3.1...v0.4.0) (2026-06-08)
 
 
