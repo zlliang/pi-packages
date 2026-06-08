@@ -35,15 +35,11 @@ class FooterComponent implements Component {
   private getLeft(): string {
     const cwd = this.ctx.sessionManager.getCwd();
     const url = pathToFileURL(resolve(cwd));
-    let text = linkText(formatCwd(cwd, homedir()), url.href);
-
+    const cwdText = linkText(formatCwd(cwd, homedir()), url.href);
     const branch = this.footerData.getGitBranch();
-    if (branch) text = `${text} [${branch}]`;
-
     const sessionName = this.ctx.sessionManager.getSessionName();
-    if (sessionName) text = `${text} • ${sessionName}`;
 
-    return this.theme.fg("dim", text);
+    return this.theme.fg("dim", [cwdText, branch, sessionName].filter(Boolean).join(" • "));
   }
 
   private getRight(): string {
