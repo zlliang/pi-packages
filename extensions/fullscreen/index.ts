@@ -39,27 +39,6 @@ export default function (pi: ExtensionAPI) {
   let pendingClear = false;
   let previousClearOnShrink: boolean | undefined;
 
-  /**
-   * Mount a persistent filler above the editor. The widget factory receives the TUI handle
-   * (otherwise unavailable via `ctx.ui`), so it both captures the TUI for clearing and pins the
-   * editor and footer to the bottom of the screen.
-   */
-  function mountFiller(ctx: ExtensionContext): void {
-    ctx.ui.setWidget(WIDGET_KEY, (capturedTui) => {
-      tui = capturedTui;
-
-      previousClearOnShrink ??= tui.getClearOnShrink();
-      tui.setClearOnShrink(true);
-
-      if (pendingClear) {
-        pendingClear = false;
-        queueMicrotask(() => capturedTui.requestRender(true));
-      }
-
-      return new BottomFiller(capturedTui);
-    });
-  }
-
   pi.on("session_start", (_event, ctx) => {
     if (!ctx.hasUI) return;
 
@@ -67,20 +46,39 @@ export default function (pi: ExtensionAPI) {
     if (!config) return;
 
     enabled = true;
-
-    if (tui) {
-      tui.setClearOnShrink(true);
-      tui.requestRender(true);
-      return;
-    }
-
     pendingClear = true;
-    mountFiller(ctx);
+
+    // The TUI handle isn't exposed via `ctx.ui`; the widget factory is the only place that
+    // receives it. Mounting a persistent filler above the editor both captures the TUI and
+    // pins the editor and footer to the bottom of the screen.
+    ctx.ui.setWidget(WIDGET_KEY, (capturedTui) => {
+      tui = capturedTui;
+
+      // Enable `clearOnShrink`, but defer it to a macrotask. On `/reload`, pi resets
+      // `clearOnShrink` to the settings value right after `session_start`, inside the reload's
+      // microtask continuation. A `setTimeout` callback runs only after that microtask queue
+      // drains, so it lands last and sticks. `queueMicrotask` (or a synchronous call) would run
+      // before the reset and get clobbered.
+      previousClearOnShrink ??= capturedTui.getClearOnShrink();
+      setTimeout(() => capturedTui.setClearOnShrink(true));
+
+      // Clear the screen once on entry. `session_start` has no TUI to repaint with, and a
+      // synchronous repaint here is too early (the filler isn't in the render tree until
+      // `setWidget` returns), so defer to a microtask. `pendingClear` limits this to the
+      // `session_start`-triggered mount rather than every widget rebuild.
+      if (pendingClear) {
+        pendingClear = false;
+        queueMicrotask(() => capturedTui.requestRender(true));
+      }
+
+      return new BottomFiller(capturedTui);
+    });
   });
 
   pi.on("session_shutdown", (event, ctx) => {
     if (!enabled) return;
 
+    // Restore `clearOnShrink` to its pre-fullscreen value.
     if (previousClearOnShrink !== undefined) {
       tui?.setClearOnShrink(previousClearOnShrink);
       previousClearOnShrink = undefined;
