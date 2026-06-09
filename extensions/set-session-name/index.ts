@@ -38,7 +38,6 @@ export default function (pi: ExtensionAPI) {
             "\"Debug flaky CI pipeline\", \"Draft Q3 planning doc\".",
         }),
         reason: Type.Optional(Type.String({
-          minLength: 1,
           maxLength: 240,
           description:
             "Optional concise reason for naming or renaming the current session. Explain what " +
@@ -54,7 +53,7 @@ export default function (pi: ExtensionAPI) {
         const reason = sanitizeText(args.reason ?? "");
 
         const container = new Container();
-        container.addChild(new Text(`${theme.bold(theme.fg("toolTitle", "set_session_name"))} ${theme.fg("accent", `"${name}"`)}`, 0, 0));
+        container.addChild(new Text(`${theme.bold(theme.fg("toolTitle", "set_session_name"))} ${theme.fg("accent", name)}`, 0, 0));
 
         if (reason) {
           container.addChild(new Spacer(1));
