@@ -2,7 +2,7 @@
   "packages": [
     {
       "source": "npm:pi-spark",
-      "extensions": ["trust-all"]
+      "extensions": []
     },
     ".."
   ]
