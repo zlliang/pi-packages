@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/zlliang/pi-credits/compare/v0.1.1...v0.1.2) (2026-06-10)
+
+
+### Features
+
+* add DeepSeek credits provider ([36844a0](https://github.com/zlliang/pi-credits/commit/36844a06ee6db0b64c0f90def9639befe0e54570))
+
 ## [0.1.1](https://github.com/zlliang/pi-credits/compare/v0.1.0...v0.1.1) (2026-06-10)
 
 
