@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/zlliang/pi-spark/compare/v0.6.3...v0.7.0) (2026-06-10)
+
+
+### Code Refactoring
+
+* remove trust-all extension ([2a783f9](https://github.com/zlliang/pi-spark/commit/2a783f9d3aa3031f0c204b047546c8f5d1aa6728))
+
 ## [0.6.3](https://github.com/zlliang/pi-spark/compare/v0.6.2...v0.6.3) (2026-06-09)
 
 
