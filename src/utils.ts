@@ -29,3 +29,24 @@ export function toNumber(value?: string | number | null): number | undefined {
   const parsed = typeof value === "number" ? value : Number(value);
   return Number.isFinite(parsed) ? parsed : undefined;
 }
+
+const FRANKFURTER_API = "https://api.frankfurter.dev/v2/rate";
+
+interface FrankfurterRateResponse {
+  rate?: string | number;
+}
+
+export async function convertToUSD(amount: number | undefined, currency: string | undefined, signal: AbortSignal): Promise<number | undefined> {
+  if (amount === undefined) return undefined;
+  if (!currency || currency === "USD") return amount;
+
+  const url = `${FRANKFURTER_API}/${encodeURIComponent(currency)}/USD`;
+  const response = await fetch(url, { headers: { Accept: "application/json" }, signal });
+  if (!response.ok) throw new Error("currency conversion failed");
+
+  const payload = (await response.json()) as FrankfurterRateResponse;
+  const rate = toNumber(payload.rate);
+  if (rate === undefined) throw new Error("currency conversion failed");
+
+  return amount * rate;
+}
