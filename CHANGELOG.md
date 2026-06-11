@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/zlliang/pi-credits/compare/v0.1.2...v0.2.0) (2026-06-11)
+
+
+### Features
+
+* add Fireworks credits provider ([ec5430e](https://github.com/zlliang/pi-credits/commit/ec5430e54f465976214efc5f3c216b5162ace2d3))
+
 ## [0.1.2](https://github.com/zlliang/pi-credits/compare/v0.1.1...v0.1.2) (2026-06-10)
 
 
