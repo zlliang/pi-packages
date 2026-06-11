@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/zlliang/pi-credits/compare/v0.3.0...v0.3.1) (2026-06-11)
+
+
+### Bug Fixes
+
+* clear stale status when switching providers ([e2814a1](https://github.com/zlliang/pi-credits/commit/e2814a18ad35419022637b24877313366e02ff6a))
+
 ## [0.3.0](https://github.com/zlliang/pi-credits/compare/v0.2.0...v0.3.0) (2026-06-11)
 
 
