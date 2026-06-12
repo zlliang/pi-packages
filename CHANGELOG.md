@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/zlliang/pi-spark/compare/v0.8.0...v0.9.0) (2026-06-12)
+
+
+### Features
+
+* **models:** add model inspection tool ([4d2625e](https://github.com/zlliang/pi-spark/commit/4d2625e2e2bd2e5637c50e563efff7b271a5a21d))
+
 ## [0.8.0](https://github.com/zlliang/pi-spark/compare/v0.7.0...v0.8.0) (2026-06-10)
 
 
