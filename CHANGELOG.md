@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.4](https://github.com/zlliang/pi-spark/compare/v0.9.3...v0.9.4) (2026-06-12)
+
+
+### Bug Fixes
+
+* **models:** expose unavailable models by scope ([8df5053](https://github.com/zlliang/pi-spark/commit/8df5053b1b92aaa78a366088b9414e7f197c4072))
+
 ## [0.9.3](https://github.com/zlliang/pi-spark/compare/v0.9.2...v0.9.3) (2026-06-12)
 
 
