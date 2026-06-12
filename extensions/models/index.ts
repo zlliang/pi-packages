@@ -117,7 +117,8 @@ export default function (pi: ExtensionAPI) {
         if (models.length > 0 && expanded) {
           models.forEach((model) => {
             const label = formatModel(model.provider, model.id);
-            container.addChild(new Text(theme.fg(model.available ? "muted" : "dim", label), 0, 0));
+            const noAuthHint = !model.available ? theme.fg("dim", " (unavailable)") : "";
+            container.addChild(new Text(theme.fg("muted", label) + noAuthHint, 0, 0));
           });
 
           container.addChild(new Spacer(1));
