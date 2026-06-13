@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/zlliang/pi-spark/compare/v0.10.0...v0.10.1) (2026-06-13)
+
+
+### Miscellaneous Chores
+
+* bump to 0.10.1 ([14a7b3d](https://github.com/zlliang/pi-spark/commit/14a7b3dc56d329095e478d0e0e1979a177bb1cfe))
+
 ## [0.10.0](https://github.com/zlliang/pi-spark/compare/v0.9.5...v0.10.0) (2026-06-13)
 
 
