@@ -8,7 +8,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zlliang/pi-credits.git"
+    "url": "git+https://github.com/zlliang/pi-packages.git",
+    "directory": "packages/pi-credits"
   },
   "license": "MIT",
   "type": "module",
@@ -17,17 +18,16 @@
     "src",
     "docs",
     "assets",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "pi": {
     "extensions": [
       "./index.ts"
     ],
-    "image": "https://raw.githubusercontent.com/zlliang/pi-credits/main/assets/cover.png"
+    "image": "https://raw.githubusercontent.com/zlliang/pi-packages/main/packages/pi-credits/assets/cover.png"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "pnpm --dir ../.. typecheck"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.14.4",
@@ -38,14 +38,5 @@
     "@earendil-works/pi-ai": "*",
     "@earendil-works/pi-coding-agent": "*",
     "@earendil-works/pi-tui": "*"
-  },
-  "devDependencies": {
-    "@earendil-works/pi-agent-core": "*",
-    "@earendil-works/pi-ai": "*",
-    "@earendil-works/pi-coding-agent": "*",
-    "@earendil-works/pi-tui": "*",
-    "@types/node": "*",
-    "typebox": "*",
-    "typescript": "^6.0.3"
   }
 }

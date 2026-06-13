@@ -6,7 +6,7 @@ A [pi](https://pi.dev/) extension that shows the active model provider's credit 
 
 ![Screenshot](./assets/screenshot.png)
 
-> Example with an OpenAI Codex subscription, paired with my [pi-spark](https://github.com/zlliang/pi-spark) package.
+> Example with an OpenAI Codex subscription, paired with my [pi-spark](https://github.com/zlliang/pi-packages/tree/main/packages/pi-spark) package.
 
 ## Supported providers
 
@@ -27,12 +27,12 @@ Install from npm:
 pi install npm:pi-credits
 ```
 
-Install from git:
+For local development from this monorepo:
 
 ```bash
-pi install git:github.com/zlliang/pi-credits
+pi install /path/to/pi-packages/packages/pi-credits
 ```
 
 ## Other pi packages
 
-- [pi-spark](https://github.com/zlliang/pi-spark): a small, opinionated collection of pi extensions.
+- [pi-spark](https://github.com/zlliang/pi-packages/tree/main/packages/pi-spark): a small, opinionated collection of pi extensions.

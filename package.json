@@ -1,0 +1,20 @@
+{
+  "name": "pi-packages",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "typecheck:credits": "pnpm --filter pi-credits typecheck",
+    "typecheck:spark": "pnpm --filter pi-spark typecheck"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "@types/node": "*",
+    "typebox": "*",
+    "typescript": "^6.0.3"
+  }
+}

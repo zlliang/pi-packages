@@ -1,9 +1,0 @@
-{
-  "packages": [
-    {
-      "source": "npm:pi-credits",
-      "extensions": []
-    },
-    ".."
-  ]
-}

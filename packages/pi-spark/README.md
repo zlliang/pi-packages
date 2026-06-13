@@ -24,10 +24,10 @@ Install from npm:
 pi install npm:pi-spark
 ```
 
-Install from git:
+For local development from this monorepo:
 
 ```bash
-pi install git:github.com/zlliang/pi-spark
+pi install /path/to/pi-packages/packages/pi-spark
 ```
 
 ## Configure
@@ -117,4 +117,4 @@ Project trust is an [input-loading guard](https://pi.dev/docs/latest/security#pr
 
 ## Other pi packages
 
-- [pi-credits](https://github.com/zlliang/pi-credits): shows the active provider's credit balance or rate-limit usage as a footer status.
+- [pi-credits](https://github.com/zlliang/pi-packages/tree/main/packages/pi-credits): shows the active provider's credit balance or rate-limit usage as a footer status.

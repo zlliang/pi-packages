@@ -8,24 +8,24 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zlliang/pi-spark.git"
+    "url": "git+https://github.com/zlliang/pi-packages.git",
+    "directory": "packages/pi-spark"
   },
   "license": "MIT",
   "type": "module",
   "files": [
     "extensions",
     "assets",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "pi": {
     "extensions": [
       "./extensions"
     ],
-    "image": "https://raw.githubusercontent.com/zlliang/pi-spark/main/assets/cover.png"
+    "image": "https://raw.githubusercontent.com/zlliang/pi-packages/main/packages/pi-spark/assets/cover.png"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "pnpm --dir ../.. typecheck"
   },
   "dependencies": {
     "liqe": "^3.8.7",
@@ -38,14 +38,5 @@
     "@earendil-works/pi-coding-agent": "*",
     "@earendil-works/pi-tui": "*",
     "typebox": "*"
-  },
-  "devDependencies": {
-    "@earendil-works/pi-agent-core": "*",
-    "@earendil-works/pi-ai": "*",
-    "@earendil-works/pi-coding-agent": "*",
-    "@earendil-works/pi-tui": "*",
-    "@types/node": "*",
-    "typebox": "*",
-    "typescript": "^6.0.3"
   }
 }
