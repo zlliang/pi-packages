@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.2](https://github.com/zlliang/pi-packages/compare/pi-spark-v0.11.1...pi-spark-v0.11.2) (2026-06-13)
+
+
+### Documentation
+
+* **pi-spark:** simplify description ([ede2299](https://github.com/zlliang/pi-packages/commit/ede2299cee377401c066bd76d8e795c9f96d4f1d))
+
 ## [0.11.1](https://github.com/zlliang/pi-packages/compare/pi-spark-v0.11.0...pi-spark-v0.11.1) (2026-06-13)
 
 

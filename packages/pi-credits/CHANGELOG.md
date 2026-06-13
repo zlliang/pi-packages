@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/zlliang/pi-packages/compare/pi-credits-v0.4.1...pi-credits-v0.4.2) (2026-06-13)
+
+
+### Documentation
+
+* **pi-credits:** simplify description ([4e5fc7e](https://github.com/zlliang/pi-packages/commit/4e5fc7e7d27539212ad228ece09079fbef3b2614))
+
 ## [0.4.1](https://github.com/zlliang/pi-packages/compare/pi-credits-v0.4.0...pi-credits-v0.4.1) (2026-06-13)
 
 
