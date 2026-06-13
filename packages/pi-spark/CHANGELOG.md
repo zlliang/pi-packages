@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.3](https://github.com/zlliang/pi-packages/compare/pi-spark-v0.10.2...pi-spark-v0.10.3) (2026-06-13)
+
+
+### Miscellaneous Chores
+
+* **pi-spark:** release 0.10.3 ([c253364](https://github.com/zlliang/pi-packages/commit/c2533641a4c9fe3b91ad6d0a52077d65036a95f0))
+
 ## [0.10.2](https://github.com/zlliang/pi-spark/compare/v0.10.1...v0.10.2) (2026-06-13)
 
 

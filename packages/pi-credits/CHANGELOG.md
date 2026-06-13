@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/zlliang/pi-packages/compare/pi-credits-v0.3.1...pi-credits-v0.3.2) (2026-06-13)
+
+
+### Miscellaneous Chores
+
+* **pi-credits:** release 0.3.2 ([9442600](https://github.com/zlliang/pi-packages/commit/944260098df9cdb7dfa963f379516fc67dbce328))
+
 ## [0.3.1](https://github.com/zlliang/pi-credits/compare/v0.3.0...v0.3.1) (2026-06-11)
 
 
