@@ -22,23 +22,13 @@ export const nameAction = defineAction({
         "(e.g., \"Refactor auth module\", \"Debug flaky CI pipeline\"). Do not use " +
         "surrounding quotes, trailing punctuation, or generic prefixes like \"Chat about\".",
     }),
-    reason: Type.Optional(Type.String({
-      maxLength: 240,
-      description:
-        "For \"name\": Explain briefly why the session was named or renamed, such as a long pasted " +
-        "prompt, an ambiguous first message, or a topic shift. Write one user-facing " +
-        "sentence (e.g., \"The focus shifted from debugging to README updates.\").",
-    })),
   },
   required: ["name"],
   promptGuidelines: [
     "Use the pi tool's \"name\" action to give the current session a concise, recognizable name, especially after a long, vague, or pasted opening prompt, or after a substantial shift in the conversation's focus.",
   ],
   renderParams(args, theme) {
-    const name = theme.fg("muted", sanitizeText(args.name ?? ""));
-    const reason = sanitizeText(args.reason ?? "");
-
-    return [reason ? name + theme.fg("muted", "\n\n" + reason) : name];
+    return [theme.fg("muted", sanitizeText(args.name ?? ""))];
   },
   renderResult() {
     // "name" has no success UI; errors are rendered by the registry's fallback.

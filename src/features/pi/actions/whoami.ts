@@ -31,14 +31,16 @@ export const whoamiAction = defineAction({
       return container;
     }
 
+    const formatLine = (label: string, value: string) => `${label.padEnd(7)}  ${value}`;
+
     if (details.sessionName) {
-      container.addChild(new Text(theme.fg("muted", `session  ${details.sessionName}`), 0, 0));
+      container.addChild(new Text(theme.fg("muted", formatLine("session", details.sessionName)), 0, 0));
     }
 
     if (details.model) {
       const row = toModelRow(details.model, details.thinkingLevel);
       const cells = [row.label, row.cost, row.context].join("  ");
-      container.addChild(new Text(theme.fg("muted", `model    ${cells}`), 0, 0));
+      container.addChild(new Text(theme.fg("muted", formatLine("model", cells)), 0, 0));
     }
 
     return container;
