@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.4](https://github.com/zlliang/pi-spark/compare/v0.14.3...v0.14.4) (2026-06-14)
+
+
+### Features
+
+* **tools:** add per-action execution timing to composed tools ([b857f1d](https://github.com/zlliang/pi-spark/commit/b857f1d8ccd1b5b5713c3486291889b7d037e298))
+
 ## [0.14.3](https://github.com/zlliang/pi-spark/compare/v0.14.2...v0.14.3) (2026-06-14)
 
 
