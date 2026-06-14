@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.2](https://github.com/zlliang/pi-spark/compare/v0.14.1...v0.14.2) (2026-06-14)
+
+
+### Bug Fixes
+
+* **pi:** simplify missing model display ([ab6389e](https://github.com/zlliang/pi-spark/commit/ab6389ea0e8e13360c221d6b9fc450e80514416d))
+
 ## [0.14.1](https://github.com/zlliang/pi-spark/compare/v0.14.0...v0.14.1) (2026-06-14)
 
 

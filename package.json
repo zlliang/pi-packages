@@ -1,6 +1,6 @@
 {
   "name": "pi-spark",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "Pi package that polishes your daily experience and keeps you at the frontier of agentic workflows.",
   "keywords": [
     "pi-coding-agent",
