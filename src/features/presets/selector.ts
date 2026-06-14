@@ -1,5 +1,5 @@
-import { DynamicBorder } from "@earendil-works/pi-coding-agent";
-import { Container, SelectList, Spacer, Text } from "@earendil-works/pi-tui";
+import { keyText, DynamicBorder } from "@earendil-works/pi-coding-agent";
+import { Box, Container, SelectList, Spacer, Text } from "@earendil-works/pi-tui";
 
 import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
 import type { PresetManager } from "./manager";
@@ -20,12 +20,11 @@ export async function showPresetSelector(ctx: ExtensionContext, presetManager: P
       }));
 
     const container = new Container();
-
     container.addChild(new DynamicBorder((s: string) => theme.fg("accent", s)));
-    container.addChild(new Spacer(1));
-    container.addChild(new Text(theme.bold("Select preset"), 0, 0));
-    container.addChild(new Text(theme.fg("dim", "↑↓ navigate · enter select · esc cancel"), 0, 0));
-    container.addChild(new Spacer(1));
+
+    const box = new Box(1, 1);
+    box.addChild(new Text(theme.bold(theme.fg("accent", "Select preset")), 0, 0));
+    box.addChild(new Spacer(1));
 
     const selectList = new SelectList(items, 10, {
       selectedPrefix: (text) => theme.fg("accent", text),
@@ -36,9 +35,17 @@ export async function showPresetSelector(ctx: ExtensionContext, presetManager: P
     });
     selectList.onSelect = (item) => done(item.value);
     selectList.onCancel = () => done(null);
-    container.addChild(selectList);
+    box.addChild(selectList);
+    box.addChild(new Spacer(1));
 
-    container.addChild(new Spacer(1));
+    const keyHints = [
+      ["↑↓", "navigate"],
+      [keyText("tui.select.confirm"), "select"],
+      [keyText("tui.select.cancel"), "cancel"],
+    ] as const;
+    box.addChild(new Text(keyHints.map((item) => `${theme.fg("dim", item[0])} ${theme.fg("muted", item[1])}`).join("  "), 0, 0));
+
+    container.addChild(box);
     container.addChild(new DynamicBorder((s: string) => theme.fg("accent", s)));
 
     return {
