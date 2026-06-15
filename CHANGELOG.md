@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.14.6](https://github.com/zlliang/pi-spark/compare/v0.14.5...v0.14.6) (2026-06-15)
+
+
+### Bug Fixes
+
+* **pi:** trim name parameters and align state output ([2dd5efc](https://github.com/zlliang/pi-spark/commit/2dd5efc9888763399a8af4e6d96d5d7744959daa))
+* **presets:** apply preset flag only on startup ([b0a2585](https://github.com/zlliang/pi-spark/commit/b0a2585a6fa63b3a72b14daf2802ad90eace1a3c))
+* **presets:** improve selector layout and key hints ([9bf0c9f](https://github.com/zlliang/pi-spark/commit/9bf0c9f7b5f00dda84464fe8327054af00a9d26b))
+* **utils:** prevent duplicate elapsed timing line in composed tools ([0a00fd5](https://github.com/zlliang/pi-spark/commit/0a00fd554c7eeadeb099f185507e63a850dd89c6))
+
 ## [0.14.5](https://github.com/zlliang/pi-spark/compare/v0.14.4...v0.14.5) (2026-06-14)
 
 
