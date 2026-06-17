@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.7](https://github.com/zlliang/pi-spark/compare/v0.14.6...v0.14.7) (2026-06-17)
+
+
+### Bug Fixes
+
+* **config:** isolate invalid feature config instead of disabling all ([c57addb](https://github.com/zlliang/pi-spark/commit/c57addb510ce88031c7def2ddde97a594ac1f39f))
+* **credits:** cancel inflight request on session shutdown ([2695273](https://github.com/zlliang/pi-spark/commit/2695273e155da4aa1edd87098c3574363833aad0))
+
 ## [0.14.6](https://github.com/zlliang/pi-spark/compare/v0.14.5...v0.14.6) (2026-06-15)
 
 
