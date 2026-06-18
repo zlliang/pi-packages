@@ -100,7 +100,9 @@ export function registerComposedTool<C>(pi: ExtensionAPI, config: ComposedToolCo
     promptGuidelines: [...(config.generalGuidelines ?? []), ...config.actions.flatMap((action) => action.promptGuidelines ?? [])],
     parameters,
     renderCall(args, theme, context) {
-      const segments = [theme.bold(theme.fg("toolTitle", config.name)), theme.fg("accent", args.action)];
+      const segments = [theme.bold(theme.fg("toolTitle", config.name))];
+      if (args.action) segments.push(theme.fg("accent", args.action));
+
       const params = byName.get(args.action)?.renderParams?.(args, theme);
       if (params) segments.push(...params);
 
