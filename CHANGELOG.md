@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.15.0](https://github.com/zlliang/pi-spark/compare/v0.14.7...v0.15.0) (2026-06-20)
+
+
+### Features
+
+* **footer:** hide cost display for free models when cost is zero ([78e0a23](https://github.com/zlliang/pi-spark/commit/78e0a230d6a148b927d5cd598c0edee505c260c2))
+* remove pi and web agent tools ([1acb837](https://github.com/zlliang/pi-spark/commit/1acb8377bbad437a31d8feb91112529f332964ab))
+
+
+### Bug Fixes
+
+* **config:** use shared config directory name ([bc5dae0](https://github.com/zlliang/pi-spark/commit/bc5dae08d8528a41e379c041cf0eaba2b176ae68))
+* **tool:** handle missing composed tool action ([e93bf39](https://github.com/zlliang/pi-spark/commit/e93bf391c26afad3e8bf84123d26f1f2a9626a60))
+
 ## [0.14.7](https://github.com/zlliang/pi-spark/compare/v0.14.6...v0.14.7) (2026-06-17)
 
 
