@@ -7,6 +7,7 @@ import { fullscreenConfigSchema } from "../features/fullscreen/config";
 import { piConfigSchema } from "../features/pi/config";
 import { presetsConfigSchema } from "../features/presets/config";
 import { recapConfigSchema } from "../features/recap/config";
+import { subagentsConfigSchema } from "../features/subagents/config";
 import { webConfigSchema } from "../features/web/config";
 
 /**
@@ -22,6 +23,7 @@ export const featureSchemas = {
   pi: piConfigSchema,
   presets: presetsConfigSchema,
   recap: recapConfigSchema,
+  subagents: subagentsConfigSchema,
   web: webConfigSchema,
 } as const;
 

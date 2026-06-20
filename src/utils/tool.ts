@@ -30,7 +30,7 @@ export interface Action<C, F extends TProperties = TProperties, D extends Action
   renderParams?: (args: Static<TObject<F>>, theme: Theme) => string[];
   /** Only handles successful output; error output is handled centrally. */
   renderResult?: NonNullable<ToolDefinition<TObject<F>, D>["renderResult"]>;
-  execute(args: Static<TObject<F>>, context: C, signal: AbortSignal | undefined, onUpdate: AgentToolUpdateCallback<D> | undefined): Promise<AgentToolResult<D>>;
+  execute(args: Static<TObject<F>>, context: C, signal: AbortSignal | undefined, onUpdate: AgentToolUpdateCallback<D> | undefined, toolCallId: string): Promise<AgentToolResult<D>>;
 }
 
 /** Identity helper bound to context `C`, so actions infer their field/details types while sharing one context shape. */
@@ -113,7 +113,7 @@ export function registerComposedTool<C>(pi: ExtensionAPI, config: ComposedToolCo
 
       return timingFor(context.args.action).renderResult(inner, options, theme, context);
     },
-    async execute(_toolCallId, params, signal, onUpdate, ctx) {
+    async execute(toolCallId, params, signal, onUpdate, ctx) {
       const action = byName.get(params.action);
       if (!action) throw new Error(`Unknown ${config.name} action "${params.action}"`);
 
@@ -123,7 +123,7 @@ export function registerComposedTool<C>(pi: ExtensionAPI, config: ComposedToolCo
         }
       }
 
-      return action.execute(params as any, config.createContext(ctx), signal, onUpdate);
+      return action.execute(params as any, config.createContext(ctx), signal, onUpdate, toolCallId);
     },
   });
 }

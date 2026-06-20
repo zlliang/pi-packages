@@ -78,6 +78,25 @@ The `web` tool gives the agent live web access, backed by the free [Exa MCP](htt
 
 ![Agent tools](./assets/screenshot-tools.png)
 
+### Subagents
+
+pi-spark lets the main session delegate focused work to subagents — child sessions with their own isolated context, spawned in-process via pi's SDK and linked to the parent.
+
+The `subagent` tool exposes four actions:
+
+- `candidates` lists the configured subagent definitions that can be spawned.
+- `list` shows the subagent sessions spawned from the current session, with state and cost.
+- `spawn` starts a new subagent from a definition and runs one task to completion, streaming its progress.
+- `steer` sends a follow-up message to an existing subagent session and runs it again.
+
+Spawn and steer block until the subagent finishes a turn and stream its tool calls and output back into the tool result. Run independent work as several `spawn` calls in one turn.
+
+Subagents are defined as markdown files with YAML frontmatter (`name`, `description`, optional `tools`, `model`, and `thinkingLevel`) plus a system-prompt body. They are discovered by priority — project-local (`.pi/agents/`) over global (`~/.pi/agent/agents/`) over the bundled set (`scout`, `planner`, `reviewer`, `worker`) — and rediscovered on each call, so edits apply mid-session. Project-local definitions are repo-controlled prompts; pi-spark only runs them in trusted projects, confirming once otherwise.
+
+The `model` field can be a concrete `provider/id` (or a bare model id) or a free-form hint. For a hint, resolve it with the `pi` tool's `models` action and pass a concrete model to `spawn`'s `model`. The `thinkingLevel` field accepts `off`, `minimal`, `low`, `medium`, `high`, or `xhigh`, and falls back to the session's current level when omitted.
+
+Subagent sessions are saved alongside the parent and linked via `parentSession`, so idle subagents survive reload and stay steerable. The footer shows a compact status — for example, `Subagents 2 running 1 idle $0.12`.
+
 ## Configuration
 
 pi-spark reads config from `~/.pi/agent/spark.json` and from the current project's `.pi/spark.json`. Project config overrides matching global fields.
@@ -124,6 +143,7 @@ All fields are optional. Each top-level feature runs with the defaults below unl
 | `pi` | `{}` | Exposes the `pi` agent tool (`models`, `name`, `whoami` actions). |
 | `presets` | `{ [name]: Preset }` | Defines named model presets, keyed by name. |
 | `recap` | `RecapConfig` | Generates a session recap when idle or on demand. |
+| `subagents` | `{}` | Exposes the `subagent` agent tool (`candidates`, `list`, `spawn`, `steer` actions). |
 | `web` | `{}` | Exposes the `web` agent tool (`search`, `fetch` actions) via Exa's hosted MCP server. |
 
 #### `EditorConfig`

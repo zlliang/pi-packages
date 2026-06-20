@@ -6,6 +6,7 @@ import { registerFullscreen } from "./src/features/fullscreen";
 import { registerPi } from "./src/features/pi";
 import { registerPresets } from "./src/features/presets";
 import { registerRecap } from "./src/features/recap";
+import { registerSubagents } from "./src/features/subagents";
 import { registerWeb } from "./src/features/web";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -27,5 +28,6 @@ export default function (pi: ExtensionAPI) {
   registerPi(pi);
   registerPresets(pi);
   registerRecap(pi);
+  registerSubagents(pi);
   registerWeb(pi);
 }
